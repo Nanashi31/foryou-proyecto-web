@@ -1,0 +1,30 @@
+¡Claro! Ese error 'El sistema no puede encontrar la ruta especificada' al usar `php artisan tinker` es muy común y casi siempre significa que Windows no sabe dónde encontrar el ejecutable de PHP. Como estás usando XAMPP, la solución es añadir la carpeta de PHP de XAMPP a las variables de entorno de tu sistema.
+
+Aquí te dejo los pasos para solucionarlo:
+
+**1. Encuentra la Ruta de tu PHP en XAMPP**
+
+*   Abre tu explorador de archivos y navega a la carpeta donde instalaste XAMPP.
+*   Generalmente, la ruta es `C:\xampp\php`.
+*   Verifica que dentro de esa carpeta exista un archivo llamado `php.exe`. Copia esta ruta, ya que la necesitarás.
+
+**2. Edita las Variables de Entorno del Sistema**
+
+*   Presiona la tecla de **Windows** y escribe `Editar las variables de entorno del sistema` (o "Edit the system environment variables"). Presiona Enter.
+*   En la ventana que se abre, haz clic en el botón que dice **"Variables de entorno..."**.
+
+**3. Modifica la Variable "Path"**
+
+*   En la sección de **"Variables del sistema"** (la de abajo), busca una variable llamada `Path` y selecciónala.
+*   Haz clic en el botón **"Editar..."**.
+*   Se abrirá una nueva ventana. Haz clic en **"Nuevo"** a la derecha.
+*   Pega la ruta que copiaste en el primer paso (ej. `C:\xampp\php`).
+*   Haz clic en **"Aceptar"** en todas las ventanas para guardar los cambios.
+
+**4. Reinicia tu Terminal**
+
+*   **¡Este paso es muy importante!** Cierra completamente tu terminal o consola actual (y si usas VSCode, ciérralo y vuelve a abrirlo) para que los cambios en las variables de entorno se apliquen.
+
+Una vez que hayas reiniciado la terminal, navega de nuevo a tu proyecto `backend-foryou` y el comando `php artisan tinker` debería funcionar sin problemas.
+
+Avísame cuando hayas podido hacerlo para continuar con la generación del token.
