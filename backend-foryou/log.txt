@@ -1,0 +1,7 @@
+PS D:\project\foryou-proyecto-web\backend-foryou> $user->createToken("scribe-token")->plainTextToken;>> 
+>> 
+ParserError: 
+Line |
+   1 |  $user->createToken("scribe-token")->plainTextToken;
+     |        ~
+     | You must provide a value expression following the '-' operator.
