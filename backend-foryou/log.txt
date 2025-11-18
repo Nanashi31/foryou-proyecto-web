@@ -1,7 +1,92 @@
-PS D:\project\foryou-proyecto-web\backend-foryou> $user->createToken("scribe-token")->plainTextToken;>> 
->> 
-ParserError: 
-Line |
-   1 |  $user->createToken("scribe-token")->plainTextToken;
-     |        ~
-     | You must provide a value expression following the '-' operator.
+# Symfony\Component\Routing\Exception\RouteNotFoundException - Internal Server Error
+
+Route [l5-swagger.default.docs] not defined.
+
+PHP 8.2.12
+Laravel 12.39.0
+localhost:8000
+
+## Stack Trace
+
+0 - vendor\laravel\framework\src\Illuminate\Routing\UrlGenerator.php:526
+1 - vendor\laravel\framework\src\Illuminate\Foundation\helpers.php:871
+2 - vendor\darkaonline\l5-swagger\src\Http\Controllers\SwaggerController.php:170
+3 - vendor\darkaonline\l5-swagger\src\Http\Controllers\SwaggerController.php:112
+4 - vendor\laravel\framework\src\Illuminate\Routing\Controller.php:54
+5 - vendor\laravel\framework\src\Illuminate\Routing\ControllerDispatcher.php:43
+6 - vendor\laravel\framework\src\Illuminate\Routing\Route.php:265
+7 - vendor\laravel\framework\src\Illuminate\Routing\Route.php:211
+8 - vendor\laravel\framework\src\Illuminate\Routing\Router.php:822
+9 - vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php:180
+10 - vendor\darkaonline\l5-swagger\src\Http\Middleware\Config.php:36
+11 - vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php:219
+12 - vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php:137
+13 - vendor\laravel\framework\src\Illuminate\Routing\Router.php:821
+14 - vendor\laravel\framework\src\Illuminate\Routing\Router.php:800
+15 - vendor\laravel\framework\src\Illuminate\Routing\Router.php:764
+16 - vendor\laravel\framework\src\Illuminate\Routing\Router.php:753
+17 - vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php:200
+18 - vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php:180
+19 - vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\TransformsRequest.php:21
+20 - vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull.php:31
+21 - vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php:219
+22 - vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\TransformsRequest.php:21
+23 - vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\TrimStrings.php:51
+24 - vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php:219
+25 - vendor\laravel\framework\src\Illuminate\Http\Middleware\ValidatePostSize.php:27
+26 - vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php:219
+27 - vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\PreventRequestsDuringMaintenance.php:109
+28 - vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php:219
+29 - vendor\laravel\framework\src\Illuminate\Http\Middleware\HandleCors.php:61
+30 - vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php:219
+31 - vendor\laravel\framework\src\Illuminate\Http\Middleware\TrustProxies.php:58
+32 - vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php:219
+33 - vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\InvokeDeferredCallbacks.php:22
+34 - vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php:219
+35 - vendor\laravel\framework\src\Illuminate\Http\Middleware\ValidatePathEncoding.php:26
+36 - vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php:219
+37 - vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php:137
+38 - vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php:175
+39 - vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php:144
+40 - vendor\laravel\framework\src\Illuminate\Foundation\Application.php:1220
+41 - public\index.php:20
+42 - vendor\laravel\framework\src\Illuminate\Foundation\resources\server.php:23
+
+## Request
+
+GET /api/documentation
+
+## Headers
+
+* **host**: localhost:8000
+* **connection**: keep-alive
+* **cache-control**: max-age=0
+* **sec-ch-ua**: "Chromium";v="142", "Google Chrome";v="142", "Not_A Brand";v="99"
+* **sec-ch-ua-mobile**: ?0
+* **sec-ch-ua-platform**: "Windows"
+* **upgrade-insecure-requests**: 1
+* **user-agent**: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36
+* **accept**: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+* **sec-fetch-site**: none
+* **sec-fetch-mode**: navigate
+* **sec-fetch-user**: ?1
+* **sec-fetch-dest**: document
+* **accept-encoding**: gzip, deflate, br, zstd
+* **accept-language**: es-MX,es;q=0.9,es-419;q=0.8,en;q=0.7
+* **cookie**: XSRF-TOKEN=eyJpdiI6IkdUOEpBQloxREVBeWxQdU9ybjB5TUE9PSIsInZhbHVlIjoiM0NEdlhLRm1IUFRIWjJVbjlPQnZBU1FwRlE0RDBOR1ZSbWFzbUZoMi9yRlJkNVFpeHZSN3VmMDFsL3VpSVB4QVFaMWJSVmhQN2RVU3FZY2E5RmtZdVRLQVRhRjgrNXhZLzExUEwvMEFlaldGMEh2SHdCcHFUamgzMHhEVDR6M3oiLCJtYWMiOiJhNjIzZDlmYTBjOTY0OTJlYTY4YmM3ZTRkMjVmMzJiNGFmOTFjZWQ3NjZkMmQyZDM5OGYxMDBjOTQ5MThkN2U1IiwidGFnIjoiIn0%3D; laravel-session=eyJpdiI6IkJobFhBb2krc1ZMNThqZGZjTVdoM1E9PSIsInZhbHVlIjoiRXdDRG9pc2h2V0k3aSsyZTRpRVFhVkRVVXpqTGRYV0tUMlNmSWltYmJzMHFtWjFZRlVlSDNNZTB5TkZvL1dyVmV0NWhEdzZ3cnI0eW1jbllVbGMrNXBtbHJpaktMbjRzVm8zMjcyKzFWZjI3aHZEYjd2bnk4ZUI4K3dLanAxSWwiLCJtYWMiOiI0ZDQ2Y2YyYmMwNzI5NDliMGVmYTk2YjM5OGRmYmE1YjA4OWY5MDMzMDUwN2M2Y2ViNjdjMWE3NmZlOGE4MGNkIiwidGFnIjoiIn0%3D
+
+## Route Context
+
+controller: \L5Swagger\Http\Controllers\SwaggerController@api
+route name: l5-swagger.default.api
+middleware: L5Swagger\Http\Middleware\Config
+
+## Route Parameters
+
+No route parameter data available.
+
+## Database Queries
+
+No database queries detected.
+
+

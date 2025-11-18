@@ -12,7 +12,20 @@ use Illuminate\Validation\ValidationException;
 class ClienteController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * @OA\Get(
+     *     path="/api/clientes",
+     *     tags={"Clientes"},
+     *     summary="Get list of clientes",
+     *     description="Returns list of clientes",
+     *     @OA\Response(
+     *         response=200,
+     *         description="Successful operation",
+     *         @OA\JsonContent(
+     *             type="array",
+     *             @OA\Items(ref="#/components/schemas/Cliente")
+     *         )
+     *     )
+     * )
      */
     public function index()
     {
@@ -55,7 +68,30 @@ class ClienteController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * @OA\Get(
+     *     path="/api/clientes/{id}",
+     *     tags={"Clientes"},
+     *     summary="Get cliente by ID",
+     *     description="Returns a single cliente",
+     *     @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         description="ID of cliente to return",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="string"
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Successful operation",
+     *         @OA\JsonContent(ref="#/components/schemas/Cliente")
+     *     ),
+     *     @OA\Response(
+     *         response=404,
+     *         description="Cliente not found"
+     *     )
+     * )
      */
     public function show(Cliente $cliente)
     {

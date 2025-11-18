@@ -1,0 +1,404 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "ForYou API Documentation",
+        "description": "API documentation for the ForYou project",
+        "contact": {
+            "email": "admin@foryou.com"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        },
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/clientes": {
+            "get": {
+                "tags": [
+                    "Clientes"
+                ],
+                "summary": "Get list of clientes",
+                "description": "Returns list of clientes",
+                "operationId": "f8eafbc2e9500413091c7f84a4470b84",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Cliente"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/clientes/{id}": {
+            "get": {
+                "tags": [
+                    "Clientes"
+                ],
+                "summary": "Get cliente by ID",
+                "description": "Returns a single cliente",
+                "operationId": "7be647ff4c2ab71c5a1f042133b13428",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of cliente to return",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Cliente"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Cliente not found"
+                    }
+                }
+            }
+        },
+        "/api/solicitudes": {
+            "get": {
+                "tags": [
+                    "Solicitudes"
+                ],
+                "summary": "Get list of solicitudes",
+                "description": "Returns list of solicitudes",
+                "operationId": "07656bdd4c54e32b2596980ff36ce6c0",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Solicitud"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Solicitudes"
+                ],
+                "summary": "Create a new solicitud",
+                "description": "Creates a new solicitud",
+                "operationId": "07c5e9e87e8656e1a46ae55e7e5a727a",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/SolicitudInput"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Solicitud created successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Solicitud"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation error"
+                    }
+                }
+            }
+        },
+        "/api/solicitudes/{id}": {
+            "get": {
+                "tags": [
+                    "Solicitudes"
+                ],
+                "summary": "Get solicitud by ID",
+                "description": "Returns a single solicitud",
+                "operationId": "d7fd9e42643919feb14c753698ca75b7",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of solicitud to return",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Solicitud"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Solicitud not found"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Solicitudes"
+                ],
+                "summary": "Update an existing solicitud",
+                "description": "Updates a solicitud",
+                "operationId": "3a9425b677c6d8c04a9dcee0a60acf00",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of solicitud to update",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/SolicitudInput"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Solicitud updated successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Solicitud"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Solicitud not found"
+                    },
+                    "422": {
+                        "description": "Validation error"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Solicitudes"
+                ],
+                "summary": "Delete a solicitud",
+                "description": "Deletes a single solicitud",
+                "operationId": "0c67aa5acf3f079065fb170e0b3de8ad",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of solicitud to delete",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "No content"
+                    },
+                    "404": {
+                        "description": "Solicitud not found"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Cliente": {
+                "title": "Cliente",
+                "required": [
+                    "nombre",
+                    "password_hash"
+                ],
+                "properties": {
+                    "id_cliente": {
+                        "description": "ID unico del cliente",
+                        "type": "string",
+                        "format": "uuid"
+                    },
+                    "nombre": {
+                        "description": "Nombre del cliente",
+                        "type": "string"
+                    },
+                    "usuario": {
+                        "description": "Nombre de usuario",
+                        "type": "string"
+                    },
+                    "telefono": {
+                        "description": "Numero de telefono",
+                        "type": "string"
+                    },
+                    "domicilio": {
+                        "description": "Domicilio del cliente",
+                        "type": "string"
+                    },
+                    "correo": {
+                        "description": "Correo electronico del cliente",
+                        "type": "string",
+                        "format": "email"
+                    },
+                    "created_at": {
+                        "description": "Fecha de creacion",
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "updated_at": {
+                        "description": "Fecha de actualizacion",
+                        "type": "string",
+                        "format": "date-time"
+                    }
+                },
+                "type": "object"
+            },
+            "Solicitud": {
+                "title": "Solicitud",
+                "required": [
+                    "direccion"
+                ],
+                "properties": {
+                    "id_solicitud": {
+                        "description": "ID de la solicitud",
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "direccion": {
+                        "description": "Dirección del trabajo",
+                        "type": "string"
+                    },
+                    "descripcion": {
+                        "description": "Descripción del proyecto",
+                        "type": "string"
+                    },
+                    "fecha": {
+                        "description": "Fecha de creación de la solicitud",
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "id_cliente": {
+                        "description": "ID del cliente que hace la solicitud",
+                        "type": "string",
+                        "format": "uuid"
+                    },
+                    "dias_disponibles": {
+                        "description": "Días disponibles del cliente",
+                        "type": "string"
+                    },
+                    "fecha_cita": {
+                        "description": "Fecha y hora de la cita",
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "materiales": {
+                        "description": "Materiales sugeridos",
+                        "type": "string"
+                    },
+                    "tipo_proyecto": {
+                        "description": "Tipo de proyecto",
+                        "type": "string"
+                    },
+                    "created_at": {
+                        "description": "Fecha de creación",
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "updated_at": {
+                        "description": "Fecha de actualización",
+                        "type": "string",
+                        "format": "date-time"
+                    }
+                },
+                "type": "object"
+            },
+            "SolicitudInput": {
+                "title": "Solicitud Input",
+                "required": [
+                    "direccion"
+                ],
+                "properties": {
+                    "direccion": {
+                        "description": "Dirección del trabajo",
+                        "type": "string"
+                    },
+                    "descripcion": {
+                        "description": "Descripción del proyecto",
+                        "type": "string"
+                    },
+                    "id_cliente": {
+                        "description": "ID del cliente que hace la solicitud",
+                        "type": "string",
+                        "format": "uuid"
+                    },
+                    "dias_disponibles": {
+                        "description": "Días disponibles del cliente",
+                        "type": "string"
+                    },
+                    "fecha_cita": {
+                        "description": "Fecha y hora de la cita",
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "materiales": {
+                        "description": "Materiales sugeridos",
+                        "type": "string"
+                    },
+                    "tipo_proyecto": {
+                        "description": "Tipo de proyecto",
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Clientes",
+            "description": "Clientes"
+        },
+        {
+            "name": "Solicitudes",
+            "description": "Solicitudes"
+        }
+    ]
+}

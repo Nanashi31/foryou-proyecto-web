@@ -10,7 +10,20 @@ use Illuminate\Validation\ValidationException;
 class SolicitudController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * @OA\Get(
+     *     path="/api/solicitudes",
+     *     tags={"Solicitudes"},
+     *     summary="Get list of solicitudes",
+     *     description="Returns list of solicitudes",
+     *     @OA\Response(
+     *         response=200,
+     *         description="Successful operation",
+     *         @OA\JsonContent(
+     *             type="array",
+     *             @OA\Items(ref="#/components/schemas/Solicitud")
+     *         )
+     *     )
+     * )
      */
     public function index()
     {
@@ -18,7 +31,25 @@ class SolicitudController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * @OA\Post(
+     *     path="/api/solicitudes",
+     *     tags={"Solicitudes"},
+     *     summary="Create a new solicitud",
+     *     description="Creates a new solicitud",
+     *     @OA\RequestBody(
+     *         required=true,
+     *         @OA\JsonContent(ref="#/components/schemas/SolicitudInput")
+     *     ),
+     *     @OA\Response(
+     *         response=201,
+     *         description="Solicitud created successfully",
+     *         @OA\JsonContent(ref="#/components/schemas/Solicitud")
+     *     ),
+     *     @OA\Response(
+     *         response=422,
+     *         description="Validation error"
+     *     )
+     * )
      */
     public function store(Request $request)
     {
@@ -50,7 +81,30 @@ class SolicitudController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * @OA\Get(
+     *     path="/api/solicitudes/{id}",
+     *     tags={"Solicitudes"},
+     *     summary="Get solicitud by ID",
+     *     description="Returns a single solicitud",
+     *     @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         description="ID of solicitud to return",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="integer"
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Successful operation",
+     *         @OA\JsonContent(ref="#/components/schemas/Solicitud")
+     *     ),
+     *     @OA\Response(
+     *         response=404,
+     *         description="Solicitud not found"
+     *     )
+     * )
      */
     public function show(Solicitud $solicitud)
     {
@@ -58,7 +112,38 @@ class SolicitudController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * @OA\Put(
+     *     path="/api/solicitudes/{id}",
+     *     tags={"Solicitudes"},
+     *     summary="Update an existing solicitud",
+     *     description="Updates a solicitud",
+     *     @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         description="ID of solicitud to update",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="integer"
+     *         )
+     *     ),
+     *     @OA\RequestBody(
+     *         required=true,
+     *         @OA\JsonContent(ref="#/components/schemas/SolicitudInput")
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Solicitud updated successfully",
+     *         @OA\JsonContent(ref="#/components/schemas/Solicitud")
+     *     ),
+     *     @OA\Response(
+     *         response=404,
+     *         description="Solicitud not found"
+     *     ),
+     *     @OA\Response(
+     *         response=422,
+     *         description="Validation error"
+     *     )
+     * )
      */
     public function update(Request $request, Solicitud $solicitud)
     {
@@ -89,7 +174,29 @@ class SolicitudController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * @OA\Delete(
+     *     path="/api/solicitudes/{id}",
+     *     tags={"Solicitudes"},
+     *     summary="Delete a solicitud",
+     *     description="Deletes a single solicitud",
+     *     @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         description="ID of solicitud to delete",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="integer"
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=204,
+     *         description="No content"
+     *     ),
+     *     @OA\Response(
+     *         response=404,
+     *         description="Solicitud not found"
+     *     )
+     * )
      */
     public function destroy(Solicitud $solicitud)
     {
