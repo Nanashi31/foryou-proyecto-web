@@ -33,7 +33,25 @@ class ClienteController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * @OA\Post(
+     *     path="/api/clientes",
+     *     tags={"Clientes"},
+     *     summary="Create a new cliente",
+     *     description="Creates a new cliente",
+     *     @OA\RequestBody(
+     *         required=true,
+     *         @OA\JsonContent(ref="#/components/schemas/ClienteInput")
+     *     ),
+     *     @OA\Response(
+     *         response=201,
+     *         description="Cliente created successfully",
+     *         @OA\JsonContent(ref="#/components/schemas/Cliente")
+     *     ),
+     *     @OA\Response(
+     *         response=422,
+     *         description="Validation error"
+     *     )
+     * )
      */
     public function store(Request $request)
     {
@@ -99,7 +117,38 @@ class ClienteController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * @OA\Put(
+     *     path="/api/clientes/{id}",
+     *     tags={"Clientes"},
+     *     summary="Update an existing cliente",
+     *     description="Updates a cliente",
+     *     @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         description="ID of cliente to update",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="string"
+     *         )
+     *     ),
+     *     @OA\RequestBody(
+     *         required=true,
+     *         @OA\JsonContent(ref="#/components/schemas/ClienteInput")
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Cliente updated successfully",
+     *         @OA\JsonContent(ref="#/components/schemas/Cliente")
+     *     ),
+     *     @OA\Response(
+     *         response=404,
+     *         description="Cliente not found"
+     *     ),
+     *     @OA\Response(
+     *         response=422,
+     *         description="Validation error"
+     *     )
+     * )
      */
     public function update(Request $request, Cliente $cliente)
     {
@@ -135,7 +184,29 @@ class ClienteController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * @OA\Delete(
+     *     path="/api/clientes/{id}",
+     *     tags={"Clientes"},
+     *     summary="Delete a cliente",
+     *     description="Deletes a single cliente",
+     *     @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         description="ID of cliente to delete",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="string"
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=204,
+     *         description="No content"
+     *     ),
+     *     @OA\Response(
+     *         response=404,
+     *         description="Cliente not found"
+     *     )
+     * )
      */
     public function destroy(Cliente $cliente)
     {

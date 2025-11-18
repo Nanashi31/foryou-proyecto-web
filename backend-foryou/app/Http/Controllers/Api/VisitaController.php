@@ -10,7 +10,20 @@ use Illuminate\Validation\ValidationException;
 class VisitaController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * @OA\Get(
+     *     path="/api/visitas",
+     *     tags={"Visitas"},
+     *     summary="Get list of visitas",
+     *     description="Returns list of visitas",
+     *     @OA\Response(
+     *         response=200,
+     *         description="Successful operation",
+     *         @OA\JsonContent(
+     *             type="array",
+     *             @OA\Items(ref="#/components/schemas/Visita")
+     *         )
+     *     )
+     * )
      */
     public function index()
     {
@@ -18,7 +31,25 @@ class VisitaController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * @OA\Post(
+     *     path="/api/visitas",
+     *     tags={"Visitas"},
+     *     summary="Create a new visita",
+     *     description="Creates a new visita",
+     *     @OA\RequestBody(
+     *         required=true,
+     *         @OA\JsonContent(ref="#/components/schemas/VisitaInput")
+     *     ),
+     *     @OA\Response(
+     *         response=201,
+     *         description="Visita created successfully",
+     *         @OA\JsonContent(ref="#/components/schemas/Visita")
+     *     ),
+     *     @OA\Response(
+     *         response=422,
+     *         description="Validation error"
+     *     )
+     * )
      */
     public function store(Request $request)
     {
@@ -46,7 +77,30 @@ class VisitaController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * @OA\Get(
+     *     path="/api/visitas/{id}",
+     *     tags={"Visitas"},
+     *     summary="Get visita by ID",
+     *     description="Returns a single visita",
+     *     @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         description="ID of visita to return",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="integer"
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Successful operation",
+     *         @OA\JsonContent(ref="#/components/schemas/Visita")
+     *     ),
+     *     @OA\Response(
+     *         response=404,
+     *         description="Visita not found"
+     *     )
+     * )
      */
     public function show(Visita $visita)
     {
@@ -54,7 +108,38 @@ class VisitaController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * @OA\Put(
+     *     path="/api/visitas/{id}",
+     *     tags={"Visitas"},
+     *     summary="Update an existing visita",
+     *     description="Updates a visita",
+     *     @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         description="ID of visita to update",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="integer"
+     *         )
+     *     ),
+     *     @OA\RequestBody(
+     *         required=true,
+     *         @OA\JsonContent(ref="#/components/schemas/VisitaInput")
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Visita updated successfully",
+     *         @OA\JsonContent(ref="#/components/schemas/Visita")
+     *     ),
+     *     @OA\Response(
+     *         response=404,
+     *         description="Visita not found"
+     *     ),
+     *     @OA\Response(
+     *         response=422,
+     *         description="Validation error"
+     *     )
+     * )
      */
     public function update(Request $request, Visita $visita)
     {
@@ -81,7 +166,29 @@ class VisitaController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * @OA\Delete(
+     *     path="/api/visitas/{id}",
+     *     tags={"Visitas"},
+     *     summary="Delete a visita",
+     *     description="Deletes a single visita",
+     *     @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         description="ID of visita to delete",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="integer"
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=204,
+     *         description="No content"
+     *     ),
+     *     @OA\Response(
+     *         response=404,
+     *         description="Visita not found"
+     *     )
+     * )
      */
     public function destroy(Visita $visita)
     {

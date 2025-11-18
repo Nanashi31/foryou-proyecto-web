@@ -11,7 +11,20 @@ use Illuminate\Validation\ValidationException;
 class CotizacionController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * @OA\Get(
+     *     path="/api/cotizaciones",
+     *     tags={"Cotizaciones"},
+     *     summary="Get list of cotizaciones",
+     *     description="Returns list of cotizaciones",
+     *     @OA\Response(
+     *         response=200,
+     *         description="Successful operation",
+     *         @OA\JsonContent(
+     *             type="array",
+     *             @OA\Items(ref="#/components/schemas/Cotizacion")
+     *         )
+     *     )
+     * )
      */
     public function index()
     {
@@ -19,7 +32,25 @@ class CotizacionController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * @OA\Post(
+     *     path="/api/cotizaciones",
+     *     tags={"Cotizaciones"},
+     *     summary="Create a new cotizacion",
+     *     description="Creates a new cotizacion",
+     *     @OA\RequestBody(
+     *         required=true,
+     *         @OA\JsonContent(ref="#/components/schemas/CotizacionInput")
+     *     ),
+     *     @OA\Response(
+     *         response=201,
+     *         description="Cotizacion created successfully",
+     *         @OA\JsonContent(ref="#/components/schemas/Cotizacion")
+     *     ),
+     *     @OA\Response(
+     *         response=422,
+     *         description="Validation error"
+     *     )
+     * )
      */
     public function store(Request $request)
     {
@@ -46,7 +77,30 @@ class CotizacionController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * @OA\Get(
+     *     path="/api/cotizaciones/{id}",
+     *     tags={"Cotizaciones"},
+     *     summary="Get cotizacion by ID",
+     *     description="Returns a single cotizacion",
+     *     @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         description="ID of cotizacion to return",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="integer"
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Successful operation",
+     *         @OA\JsonContent(ref="#/components/schemas/Cotizacion")
+     *     ),
+     *     @OA\Response(
+     *         response=404,
+     *         description="Cotizacion not found"
+     *     )
+     * )
      */
     public function show(Cotizacion $cotizacion)
     {
@@ -54,7 +108,38 @@ class CotizacionController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * @OA\Put(
+     *     path="/api/cotizaciones/{id}",
+     *     tags={"Cotizaciones"},
+     *     summary="Update an existing cotizacion",
+     *     description="Updates a cotizacion",
+     *     @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         description="ID of cotizacion to update",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="integer"
+     *         )
+     *     ),
+     *     @OA\RequestBody(
+     *         required=true,
+     *         @OA\JsonContent(ref="#/components/schemas/CotizacionInput")
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Cotizacion updated successfully",
+     *         @OA\JsonContent(ref="#/components/schemas/Cotizacion")
+     *     ),
+     *     @OA\Response(
+     *         response=404,
+     *         description="Cotizacion not found"
+     *     ),
+     *     @OA\Response(
+     *         response=422,
+     *         description="Validation error"
+     *     )
+     * )
      */
     public function update(Request $request, Cotizacion $cotizacion)
     {
@@ -81,7 +166,29 @@ class CotizacionController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * @OA\Delete(
+     *     path="/api/cotizaciones/{id}",
+     *     tags={"Cotizaciones"},
+     *     summary="Delete a cotizacion",
+     *     description="Deletes a single cotizacion",
+     *     @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         description="ID of cotizacion to delete",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="integer"
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=204,
+     *         description="No content"
+     *     ),
+     *     @OA\Response(
+     *         response=404,
+     *         description="Cotizacion not found"
+     *     )
+     * )
      */
     public function destroy(Cotizacion $cotizacion)
     {
@@ -97,7 +204,45 @@ class CotizacionController extends Controller
     }
 
     /**
-     * Suggest materials for a solicitud using AI.
+     * @OA\Post(
+     *     path="/api/cotizaciones/suggest-materials",
+     *     tags={"Cotizaciones"},
+     *     summary="Suggest materials for a solicitud using AI",
+     *     description="Provides AI-driven material suggestions based on a solicitud ID.",
+     *     @OA\RequestBody(
+     *         required=true,
+     *         @OA\JsonContent(
+     *             required={"id_solicitud"},
+     *             @OA\Property(property="id_solicitud", type="integer", format="int64", description="ID of the solicitud for which to suggest materials")
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Material suggestions generated successfully",
+     *         @OA\JsonContent(
+     *             @OA\Property(property="message", type="string", example="Material suggestions generated successfully"),
+     *             @OA\Property(property="solicitud_id", type="integer", example=1),
+     *             @OA\Property(
+     *                 property="suggestions",
+     *                 type="array",
+     *                 @OA\Items(
+     *                     @OA\Property(property="material_name", type="string", example="PTR 1 1/2"),
+     *                     @OA\Property(property="quantity", type="number", format="float", example=20),
+     *                     @OA\Property(property="unit", type="string", example="m"),
+     *                     @OA\Property(property="notes", type="string", example="Para marco de puerta"),
+     *                 ),
+     *             )
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=422,
+     *         description="Validation error"
+     *     ),
+     *     @OA\Response(
+     *         response=500,
+     *         description="Error generating material suggestions"
+     *     )
+     * )
      */
     public function suggestMaterials(Request $request)
     {

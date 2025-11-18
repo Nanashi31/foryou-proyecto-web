@@ -36,6 +36,39 @@
                         }
                     }
                 }
+            },
+            "post": {
+                "tags": [
+                    "Clientes"
+                ],
+                "summary": "Create a new cliente",
+                "description": "Creates a new cliente",
+                "operationId": "2a8a28c7aec782e1af95193a65053e68",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ClienteInput"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Cliente created successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Cliente"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation error"
+                    }
+                }
             }
         },
         "/api/clientes/{id}": {
@@ -70,6 +103,667 @@
                     },
                     "404": {
                         "description": "Cliente not found"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Clientes"
+                ],
+                "summary": "Update an existing cliente",
+                "description": "Updates a cliente",
+                "operationId": "1cc735d14964cb4b25557d546e807a9c",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of cliente to update",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ClienteInput"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Cliente updated successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Cliente"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Cliente not found"
+                    },
+                    "422": {
+                        "description": "Validation error"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Clientes"
+                ],
+                "summary": "Delete a cliente",
+                "description": "Deletes a single cliente",
+                "operationId": "fae533cf0841c3ece1414287d89ef42b",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of cliente to delete",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "No content"
+                    },
+                    "404": {
+                        "description": "Cliente not found"
+                    }
+                }
+            }
+        },
+        "/api/cotizaciones": {
+            "get": {
+                "tags": [
+                    "Cotizaciones"
+                ],
+                "summary": "Get list of cotizaciones",
+                "description": "Returns list of cotizaciones",
+                "operationId": "e0fb56c6e647aa0a32b74fa223c8eab7",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Cotizacion"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Cotizaciones"
+                ],
+                "summary": "Create a new cotizacion",
+                "description": "Creates a new cotizacion",
+                "operationId": "1935ef0baa1d3ede5e6780b1800b4ab9",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CotizacionInput"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Cotizacion created successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Cotizacion"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation error"
+                    }
+                }
+            }
+        },
+        "/api/cotizaciones/{id}": {
+            "get": {
+                "tags": [
+                    "Cotizaciones"
+                ],
+                "summary": "Get cotizacion by ID",
+                "description": "Returns a single cotizacion",
+                "operationId": "e8f5a5732a12bde5581b022443cd333c",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of cotizacion to return",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Cotizacion"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Cotizacion not found"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Cotizaciones"
+                ],
+                "summary": "Update an existing cotizacion",
+                "description": "Updates a cotizacion",
+                "operationId": "e6afd7cc7fc883b0f6b6dc9946072195",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of cotizacion to update",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CotizacionInput"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Cotizacion updated successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Cotizacion"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Cotizacion not found"
+                    },
+                    "422": {
+                        "description": "Validation error"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Cotizaciones"
+                ],
+                "summary": "Delete a cotizacion",
+                "description": "Deletes a single cotizacion",
+                "operationId": "05d367e9c13af87638f76782f568a878",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of cotizacion to delete",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "No content"
+                    },
+                    "404": {
+                        "description": "Cotizacion not found"
+                    }
+                }
+            }
+        },
+        "/api/cotizaciones/suggest-materials": {
+            "post": {
+                "tags": [
+                    "Cotizaciones"
+                ],
+                "summary": "Suggest materials for a solicitud using AI",
+                "description": "Provides AI-driven material suggestions based on a solicitud ID.",
+                "operationId": "fbea7fe2c220d34191de0912c3c111d2",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "id_solicitud"
+                                ],
+                                "properties": {
+                                    "id_solicitud": {
+                                        "description": "ID of the solicitud for which to suggest materials",
+                                        "type": "integer",
+                                        "format": "int64"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Material suggestions generated successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Material suggestions generated successfully"
+                                        },
+                                        "solicitud_id": {
+                                            "type": "integer",
+                                            "example": 1
+                                        },
+                                        "suggestions": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "material_name": {
+                                                        "type": "string",
+                                                        "example": "PTR 1 1/2"
+                                                    },
+                                                    "quantity": {
+                                                        "type": "number",
+                                                        "format": "float",
+                                                        "example": 20
+                                                    },
+                                                    "unit": {
+                                                        "type": "string",
+                                                        "example": "m"
+                                                    },
+                                                    "notes": {
+                                                        "type": "string",
+                                                        "example": "Para marco de puerta"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation error"
+                    },
+                    "500": {
+                        "description": "Error generating material suggestions"
+                    }
+                }
+            }
+        },
+        "/api/detalles-solicitud": {
+            "get": {
+                "tags": [
+                    "Detalles Solicitud"
+                ],
+                "summary": "Get list of detalle solicitudes",
+                "description": "Returns list of detalle solicitudes",
+                "operationId": "121c1d59e63f71cc7cbab540e805d14f",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/DetalleSolicitud"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Detalles Solicitud"
+                ],
+                "summary": "Create a new detalle solicitud",
+                "description": "Creates a new detalle solicitud",
+                "operationId": "67233454a8b9d29f968ac9b50e1037ba",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/DetalleSolicitudInput"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Detalle Solicitud created successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/DetalleSolicitud"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation error"
+                    }
+                }
+            }
+        },
+        "/api/detalles-solicitud/{id}": {
+            "get": {
+                "tags": [
+                    "Detalles Solicitud"
+                ],
+                "summary": "Get detalle solicitud by ID",
+                "description": "Returns a single detalle solicitud",
+                "operationId": "a2ffc8082b1d834c85abf071939cec51",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of detalle solicitud to return",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/DetalleSolicitud"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Detalle Solicitud not found"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Detalles Solicitud"
+                ],
+                "summary": "Update an existing detalle solicitud",
+                "description": "Updates a detalle solicitud",
+                "operationId": "22165a96ffd652b52ab85a248c510cb2",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of detalle solicitud to update",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/DetalleSolicitudInput"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Detalle Solicitud updated successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/DetalleSolicitud"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Detalle Solicitud not found"
+                    },
+                    "422": {
+                        "description": "Validation error"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Detalles Solicitud"
+                ],
+                "summary": "Delete a detalle solicitud",
+                "description": "Deletes a single detalle solicitud",
+                "operationId": "16426913471a57fc4a7161ec6da81d9e",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of detalle solicitud to delete",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "No content"
+                    },
+                    "404": {
+                        "description": "Detalle Solicitud not found"
+                    }
+                }
+            }
+        },
+        "/api/empleados": {
+            "get": {
+                "tags": [
+                    "Empleados"
+                ],
+                "summary": "Get list of empleados",
+                "description": "Returns list of empleados",
+                "operationId": "843734bf35749b554c0f44b8631d7492",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Empleado"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Empleados"
+                ],
+                "summary": "Create a new empleado",
+                "description": "Creates a new empleado",
+                "operationId": "797a90b42ba6eabad784c56e6287912f",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/EmpleadoInput"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Empleado created successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Empleado"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation error"
+                    }
+                }
+            }
+        },
+        "/api/empleados/{id}": {
+            "get": {
+                "tags": [
+                    "Empleados"
+                ],
+                "summary": "Get empleado by ID",
+                "description": "Returns a single empleado",
+                "operationId": "fe529a11836b405b06bda1f4118eea09",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of empleado to return",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Empleado"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Empleado not found"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Empleados"
+                ],
+                "summary": "Update an existing empleado",
+                "description": "Updates an empleado",
+                "operationId": "3e0e39beedb373ee431d344063fbfe01",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of empleado to update",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/EmpleadoInput"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Empleado updated successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Empleado"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Empleado not found"
+                    },
+                    "422": {
+                        "description": "Validation error"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Empleados"
+                ],
+                "summary": "Delete an empleado",
+                "description": "Deletes a single empleado",
+                "operationId": "5561b5ce018c7ad8a2ccbd86fe1682e9",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of empleado to delete",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "No content"
+                    },
+                    "404": {
+                        "description": "Empleado not found"
                     }
                 }
             }
@@ -241,6 +935,174 @@
                     }
                 }
             }
+        },
+        "/api/visitas": {
+            "get": {
+                "tags": [
+                    "Visitas"
+                ],
+                "summary": "Get list of visitas",
+                "description": "Returns list of visitas",
+                "operationId": "39ee07cb5f414be3dcf5d8038a6f6901",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Visita"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Visitas"
+                ],
+                "summary": "Create a new visita",
+                "description": "Creates a new visita",
+                "operationId": "819d2c5bfbfd6a7c3f1a91ccc8489190",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/VisitaInput"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Visita created successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Visita"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation error"
+                    }
+                }
+            }
+        },
+        "/api/visitas/{id}": {
+            "get": {
+                "tags": [
+                    "Visitas"
+                ],
+                "summary": "Get visita by ID",
+                "description": "Returns a single visita",
+                "operationId": "165ad59758d217e2170bbc2c364b57db",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of visita to return",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Visita"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Visita not found"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Visitas"
+                ],
+                "summary": "Update an existing visita",
+                "description": "Updates a visita",
+                "operationId": "93d2a8539455ac51f28c65d9bd3207a0",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of visita to update",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/VisitaInput"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Visita updated successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Visita"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Visita not found"
+                    },
+                    "422": {
+                        "description": "Validation error"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Visitas"
+                ],
+                "summary": "Delete a visita",
+                "description": "Deletes a single visita",
+                "operationId": "746ff6eb00ebab39a319f9d00dc5442e",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of visita to delete",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "No content"
+                    },
+                    "404": {
+                        "description": "Visita not found"
+                    }
+                }
+            }
         }
     },
     "components": {
@@ -287,6 +1149,253 @@
                         "description": "Fecha de actualizacion",
                         "type": "string",
                         "format": "date-time"
+                    }
+                },
+                "type": "object"
+            },
+            "ClienteInput": {
+                "title": "Cliente Input",
+                "required": [
+                    "nombre",
+                    "password"
+                ],
+                "properties": {
+                    "nombre": {
+                        "description": "Nombre del cliente",
+                        "type": "string"
+                    },
+                    "usuario": {
+                        "description": "Nombre de usuario (opcional)",
+                        "type": "string"
+                    },
+                    "password": {
+                        "description": "Contraseña del cliente (min 8 caracteres)",
+                        "type": "string",
+                        "format": "password"
+                    },
+                    "telefono": {
+                        "description": "Número de teléfono (opcional)",
+                        "type": "string"
+                    },
+                    "domicilio": {
+                        "description": "Domicilio del cliente (opcional)",
+                        "type": "string"
+                    },
+                    "correo": {
+                        "description": "Correo electrónico del cliente (opcional, debe ser único)",
+                        "type": "string",
+                        "format": "email"
+                    }
+                },
+                "type": "object"
+            },
+            "Cotizacion": {
+                "title": "Cotizacion",
+                "required": [
+                    "id_solicitud",
+                    "costo_total"
+                ],
+                "properties": {
+                    "id_cotizacion": {
+                        "description": "ID de la cotización",
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "id_solicitud": {
+                        "description": "ID de la solicitud asociada",
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "fecha_cot": {
+                        "description": "Fecha de la cotización",
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "costo_total": {
+                        "description": "Costo total de la cotización",
+                        "type": "number",
+                        "format": "float"
+                    },
+                    "notas": {
+                        "description": "Notas adicionales de la cotización",
+                        "type": "string"
+                    },
+                    "created_at": {
+                        "description": "Fecha de creación",
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "updated_at": {
+                        "description": "Fecha de actualización",
+                        "type": "string",
+                        "format": "date-time"
+                    }
+                },
+                "type": "object"
+            },
+            "CotizacionInput": {
+                "title": "Cotizacion Input",
+                "required": [
+                    "id_solicitud",
+                    "costo_total"
+                ],
+                "properties": {
+                    "id_solicitud": {
+                        "description": "ID de la solicitud asociada",
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "costo_total": {
+                        "description": "Costo total de la cotización",
+                        "type": "number",
+                        "format": "float"
+                    },
+                    "notas": {
+                        "description": "Notas adicionales de la cotización",
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "DetalleSolicitud": {
+                "title": "DetalleSolicitud",
+                "required": [
+                    "id_solicitud"
+                ],
+                "properties": {
+                    "id_detalles": {
+                        "description": "ID del detalle de solicitud",
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "id_solicitud": {
+                        "description": "ID de la solicitud a la que pertenece este detalle",
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "med_alt": {
+                        "description": "Medida de alto",
+                        "type": "number",
+                        "format": "float"
+                    },
+                    "med_anc": {
+                        "description": "Medida de ancho",
+                        "type": "number",
+                        "format": "float"
+                    },
+                    "descripcion": {
+                        "description": "Descripción del elemento",
+                        "type": "string"
+                    },
+                    "created_at": {
+                        "description": "Fecha de creación",
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "updated_at": {
+                        "description": "Fecha de actualización",
+                        "type": "string",
+                        "format": "date-time"
+                    }
+                },
+                "type": "object"
+            },
+            "DetalleSolicitudInput": {
+                "title": "DetalleSolicitud Input",
+                "required": [
+                    "id_solicitud"
+                ],
+                "properties": {
+                    "id_solicitud": {
+                        "description": "ID de la solicitud a la que pertenece este detalle",
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "med_alt": {
+                        "description": "Medida de alto",
+                        "type": "number",
+                        "format": "float"
+                    },
+                    "med_anc": {
+                        "description": "Medida de ancho",
+                        "type": "number",
+                        "format": "float"
+                    },
+                    "descripcion": {
+                        "description": "Descripción del elemento",
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "Empleado": {
+                "title": "Empleado",
+                "required": [
+                    "nombre"
+                ],
+                "properties": {
+                    "id_empleado": {
+                        "description": "ID del empleado",
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "nombre": {
+                        "description": "Nombre del empleado",
+                        "type": "string"
+                    },
+                    "telefono": {
+                        "description": "Número de teléfono",
+                        "type": "string"
+                    },
+                    "correo": {
+                        "description": "Correo electrónico",
+                        "type": "string",
+                        "format": "email"
+                    },
+                    "rol": {
+                        "description": "Rol del empleado (e.g., admin, herrero)",
+                        "type": "string"
+                    },
+                    "created_at": {
+                        "description": "Fecha de creación",
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "updated_at": {
+                        "description": "Fecha de actualización",
+                        "type": "string",
+                        "format": "date-time"
+                    }
+                },
+                "type": "object"
+            },
+            "EmpleadoInput": {
+                "title": "Empleado Input",
+                "required": [
+                    "nombre"
+                ],
+                "properties": {
+                    "nombre": {
+                        "description": "Nombre del empleado",
+                        "type": "string"
+                    },
+                    "telefono": {
+                        "description": "Número de teléfono",
+                        "type": "string"
+                    },
+                    "correo": {
+                        "description": "Correo electrónico",
+                        "type": "string",
+                        "format": "email"
+                    },
+                    "password": {
+                        "description": "Contraseña (si el empleado puede iniciar sesión)",
+                        "type": "string",
+                        "format": "password"
+                    },
+                    "rol": {
+                        "description": "Rol del empleado (e.g., admin, herrero)",
+                        "type": "string"
                     }
                 },
                 "type": "object"
@@ -388,6 +1497,81 @@
                     }
                 },
                 "type": "object"
+            },
+            "Visita": {
+                "title": "Visita",
+                "required": [
+                    "id_empleado",
+                    "id_solicitud",
+                    "fecha"
+                ],
+                "properties": {
+                    "id_visita": {
+                        "description": "ID de la visita",
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "id_empleado": {
+                        "description": "ID del empleado que realiza la visita",
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "id_solicitud": {
+                        "description": "ID de la solicitud visitada",
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "fecha": {
+                        "description": "Fecha y hora de la visita",
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "observaciones": {
+                        "description": "Observaciones de la visita",
+                        "type": "string"
+                    },
+                    "created_at": {
+                        "description": "Fecha de creación",
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "updated_at": {
+                        "description": "Fecha de actualización",
+                        "type": "string",
+                        "format": "date-time"
+                    }
+                },
+                "type": "object"
+            },
+            "VisitaInput": {
+                "title": "Visita Input",
+                "required": [
+                    "id_empleado",
+                    "id_solicitud",
+                    "fecha"
+                ],
+                "properties": {
+                    "id_empleado": {
+                        "description": "ID del empleado que realiza la visita",
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "id_solicitud": {
+                        "description": "ID de la solicitud visitada",
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "fecha": {
+                        "description": "Fecha y hora de la visita",
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "observaciones": {
+                        "description": "Observaciones de la visita",
+                        "type": "string"
+                    }
+                },
+                "type": "object"
             }
         }
     },
@@ -397,8 +1581,24 @@
             "description": "Clientes"
         },
         {
+            "name": "Cotizaciones",
+            "description": "Cotizaciones"
+        },
+        {
+            "name": "Detalles Solicitud",
+            "description": "Detalles Solicitud"
+        },
+        {
+            "name": "Empleados",
+            "description": "Empleados"
+        },
+        {
             "name": "Solicitudes",
             "description": "Solicitudes"
+        },
+        {
+            "name": "Visitas",
+            "description": "Visitas"
         }
     ]
 }

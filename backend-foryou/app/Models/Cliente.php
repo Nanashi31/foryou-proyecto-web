@@ -56,6 +56,19 @@ use Illuminate\Database\Eloquent\Model;
  *         description="Fecha de actualizacion"
  *     )
  * )
+ *
+ * @OA\Schema(
+ *     schema="ClienteInput",
+ *     type="object",
+ *     title="Cliente Input",
+ *     required={"nombre", "password"},
+ *     @OA\Property(property="nombre", type="string", description="Nombre del cliente"),
+ *     @OA\Property(property="usuario", type="string", description="Nombre de usuario (opcional)"),
+ *     @OA\Property(property="password", type="string", format="password", description="Contraseña del cliente (min 8 caracteres)"),
+ *     @OA\Property(property="telefono", type="string", description="Número de teléfono (opcional)"),
+ *     @OA\Property(property="domicilio", type="string", description="Domicilio del cliente (opcional)"),
+ *     @OA\Property(property="correo", type="string", format="email", description="Correo electrónico del cliente (opcional, debe ser único)")
+ * )
  */
 class Cliente extends Model
 {

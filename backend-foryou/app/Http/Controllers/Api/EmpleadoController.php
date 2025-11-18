@@ -11,7 +11,20 @@ use Illuminate\Validation\ValidationException;
 class EmpleadoController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * @OA\Get(
+     *     path="/api/empleados",
+     *     tags={"Empleados"},
+     *     summary="Get list of empleados",
+     *     description="Returns list of empleados",
+     *     @OA\Response(
+     *         response=200,
+     *         description="Successful operation",
+     *         @OA\JsonContent(
+     *             type="array",
+     *             @OA\Items(ref="#/components/schemas/Empleado")
+     *         )
+     *     )
+     * )
      */
     public function index()
     {
@@ -19,7 +32,25 @@ class EmpleadoController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * @OA\Post(
+     *     path="/api/empleados",
+     *     tags={"Empleados"},
+     *     summary="Create a new empleado",
+     *     description="Creates a new empleado",
+     *     @OA\RequestBody(
+     *         required=true,
+     *         @OA\JsonContent(ref="#/components/schemas/EmpleadoInput")
+     *     ),
+     *     @OA\Response(
+     *         response=201,
+     *         description="Empleado created successfully",
+     *         @OA\JsonContent(ref="#/components/schemas/Empleado")
+     *     ),
+     *     @OA\Response(
+     *         response=422,
+     *         description="Validation error"
+     *     )
+     * )
      */
     public function store(Request $request)
     {
@@ -54,7 +85,30 @@ class EmpleadoController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * @OA\Get(
+     *     path="/api/empleados/{id}",
+     *     tags={"Empleados"},
+     *     summary="Get empleado by ID",
+     *     description="Returns a single empleado",
+     *     @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         description="ID of empleado to return",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="integer"
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Successful operation",
+     *         @OA\JsonContent(ref="#/components/schemas/Empleado")
+     *     ),
+     *     @OA\Response(
+     *         response=404,
+     *         description="Empleado not found"
+     *     )
+     * )
      */
     public function show(Empleado $empleado)
     {
@@ -62,7 +116,38 @@ class EmpleadoController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * @OA\Put(
+     *     path="/api/empleados/{id}",
+     *     tags={"Empleados"},
+     *     summary="Update an existing empleado",
+     *     description="Updates an empleado",
+     *     @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         description="ID of empleado to update",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="integer"
+     *         )
+     *     ),
+     *     @OA\RequestBody(
+     *         required=true,
+     *         @OA\JsonContent(ref="#/components/schemas/EmpleadoInput")
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Empleado updated successfully",
+     *         @OA\JsonContent(ref="#/components/schemas/Empleado")
+     *     ),
+     *     @OA\Response(
+     *         response=404,
+     *         description="Empleado not found"
+     *     ),
+     *     @OA\Response(
+     *         response=422,
+     *         description="Validation error"
+     *     )
+     * )
      */
     public function update(Request $request, Empleado $empleado)
     {
@@ -97,7 +182,29 @@ class EmpleadoController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * @OA\Delete(
+     *     path="/api/empleados/{id}",
+     *     tags={"Empleados"},
+     *     summary="Delete an empleado",
+     *     description="Deletes a single empleado",
+     *     @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         description="ID of empleado to delete",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="integer"
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=204,
+     *         description="No content"
+     *     ),
+     *     @OA\Response(
+     *         response=404,
+     *         description="Empleado not found"
+     *     )
+     * )
      */
     public function destroy(Empleado $empleado)
     {
